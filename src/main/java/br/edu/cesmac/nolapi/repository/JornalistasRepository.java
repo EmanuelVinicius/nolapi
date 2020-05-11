@@ -9,5 +9,5 @@ import br.edu.cesmac.nolapi.domain.Jornalista;
 @Repository
 public interface JornalistasRepository extends JpaRepository<Jornalista, Long> {
 
-	Jornalista findByEmail(String email);
+	public Jornalista findByEmail(String email);
 }
