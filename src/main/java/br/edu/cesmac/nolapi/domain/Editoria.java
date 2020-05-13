@@ -1,6 +1,6 @@
 package br.edu.cesmac.nolapi.domain;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,8 +13,7 @@ public class Editoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idEditoria;
-	@NotEmpty
-	@Column(name = "nome", nullable = false)
+	@NotEmpty(message = "Obrigatório o uso do nome da Editoria")
 	private String nome;
 
 	public Editoria() {

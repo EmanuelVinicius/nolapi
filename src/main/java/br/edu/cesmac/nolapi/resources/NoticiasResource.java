@@ -4,6 +4,7 @@ import br.edu.cesmac.nolapi.domain.Noticia;
 import br.edu.cesmac.nolapi.service.NoticiasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -25,7 +26,7 @@ public class NoticiasResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> salvar(@Valid @RequestBody Noticia noticia) {
+	public ResponseEntity<Void> salvar(@Validated @RequestBody Noticia noticia) {
 		noticiasService.salvar(noticia);
 
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(noticia.getIdNoticia())
@@ -35,7 +36,7 @@ public class NoticiasResource {
 	}
 
 	@PutMapping
-	public void atualizar(@RequestBody Noticia noticia) {
+	public void atualizar(@Validated @RequestBody Noticia noticia) {
 		noticiasService.atualizar(noticia);
 	}
 

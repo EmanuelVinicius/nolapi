@@ -4,6 +4,7 @@ import br.edu.cesmac.nolapi.domain.Noticia;
 import br.edu.cesmac.nolapi.repository.NoticiasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
@@ -13,12 +14,12 @@ public class NoticiasService {
 	@Autowired
 	private NoticiasRepository noticiasRespository;
 
-	public Noticia salvar(Noticia noticia) {
+	public Noticia salvar(@Validated Noticia noticia) {
 		Noticia noticiaCriada = noticiasRespository.save(noticia);
 		return noticiaCriada;
 	}
 
-	public Noticia atualizar(Noticia noticia) {
+	public Noticia atualizar(@Validated Noticia noticia) {
 		Noticia noticiaAtualizada = noticiasRespository.save(noticia);
 		return noticiaAtualizada;
 	}

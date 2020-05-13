@@ -1,13 +1,12 @@
 package br.edu.cesmac.nolapi.domain;
 
-import java.util.regex.Pattern;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -16,10 +15,12 @@ public class Jornalista {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idJornalista;
-	@NotEmpty
+	@NotEmpty(message = "Obrigatório o uso do nome Jornalista")
 	private String nome;
-	@NotEmpty
+	@Email(message = "O e-mail deve ser valido	")
+	@NotEmpty(message = "Obrigatório usar um email válido")
 	private String email;
+	@NotBlank
 	private String biografia;
 	@OneToOne
 	private Noticia noticia;

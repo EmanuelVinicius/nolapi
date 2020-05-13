@@ -15,9 +15,8 @@ public class Noticia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idNoticia;
-	@NotEmpty
+	@NotEmpty(message = "Obrigatório o uso de um Titulo")
 	private String titulo;
-	@NotEmpty
 	@ManyToOne
 	private Editoria editoria;
 	@NotEmpty
