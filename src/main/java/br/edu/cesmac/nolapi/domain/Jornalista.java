@@ -1,13 +1,19 @@
 package br.edu.cesmac.nolapi.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Jornalista {
@@ -15,15 +21,20 @@ public class Jornalista {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idJornalista;
+
 	@NotEmpty(message = "Obrigatório o uso do nome Jornalista")
 	private String nome;
-	@Email(message = "O e-mail deve ser valido	")
-	@NotEmpty(message = "Obrigatório usar um email válido")
+
+	@NotNull(message = "Obrigatório informar um e-mail")
+	@Email(message = "O e-mail deve ser valido")
 	private String email;
-	@NotBlank
+
+	@NotEmpty(message = "Obrigatório informar a biografia do Jornalista")
 	private String biografia;
-	@OneToOne
-	private Noticia noticia;
+
+	@JsonIgnoreProperties("jornalista")
+	@OneToMany(mappedBy = "jornalista")
+	private List<Noticia> noticias;
 
 	public Long getIdJornalista() {
 		return idJornalista;
@@ -55,14 +66,6 @@ public class Jornalista {
 
 	public void setBiografia(String biografia) {
 		this.biografia = biografia;
-	}
-
-	public Noticia getNoticia() {
-		return noticia;
-	}
-
-	public void setNoticia(Noticia noticia) {
-		this.noticia = noticia;
 	}
 
 }

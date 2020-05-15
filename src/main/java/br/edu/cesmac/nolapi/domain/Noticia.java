@@ -5,9 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Noticia {
@@ -15,12 +15,16 @@ public class Noticia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idNoticia;
+	
 	@NotEmpty(message = "Obrigatório o uso de um Titulo")
 	private String titulo;
+	
 	@ManyToOne
+	@NotNull(message = "Obrigatorio informar editoria da Noticia")
 	private Editoria editoria;
-	@NotEmpty
-	@OneToOne
+	
+	@ManyToOne
+	@NotNull(message = "Obrigatorio informar o Jornalista da noticia")
 	private Jornalista jornalista;
 
 	public Long getIdNoticia() {
